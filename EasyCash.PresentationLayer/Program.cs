@@ -1,7 +1,13 @@
+using EasyCash.DataAccessLayer.Concrete;
+using EasyCash.EntityLayer.Concrete;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+builder.Services.AddDbContext<Context>(); //10
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>(); //10
 
 var app = builder.Build();
 
@@ -18,6 +24,7 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

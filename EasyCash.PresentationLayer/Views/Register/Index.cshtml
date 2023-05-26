@@ -1,0 +1,72 @@
+﻿@model AppUserRegisterDto
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<!-- Head -->
+<head>
+
+	<title>EasyCash - Register</title>
+
+	<!-- Meta-Tags -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="keywords" content="Existing Login Form Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- //Meta-Tags -->
+
+	<link href="~/register/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+
+	<!-- Style -->
+	<link rel="stylesheet" href="~/register/css/style.css" type="text/css" media="all">
+
+	<!-- Fonts -->
+	<link href="//fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+	<!-- //Fonts -->
+
+</head>
+<!-- //Head -->
+<!-- Body -->
+<body>
+
+	<h1>EasyCash</h1>
+
+	<div class="w3layoutscontaineragileits">
+		<h2>Register here</h2>
+		<form method="post">
+			<input type="text" asp-for="Username" placeholder="Username" required="">
+			<input type="text" asp-for="Email" placeholder="Email" required="">
+			<input type="text" asp-for="Name" placeholder="Name" required="">
+			<input type="text" asp-for="Surname" placeholder="Surname" required="">
+			<input type="password" asp-for="Password" placeholder="Password" required="">
+			<input type="password" asp-for="ConfirmPassword" placeholder="Confirm Password" required="">
+			<div class="text-white" asp-validation-summary="ModelOnly"></div>
+			<br/>
+			<br/>
+			<ul class="agileinfotickwthree">
+				<li>
+					<input type="checkbox" id="brand1" value="">
+					<label for="brand1"><span></span>I have read "Terms of Use"</label>
+				</li>
+			</ul>
+			<div class="aitssendbuttonw3ls">
+				<input type="submit" value="REGISTER">
+				<p>Already have an account? <span>→</span> <a class="w3_play_icon1" href="/Login/Index/">LOGIN</a>
+				<p>Return to <span>→</span> <a class="w3_play_icon1" href="">Home</a>
+				<div class="clear"></div>
+			</div>
+		</form>
+	</div>
+
+	<div class="w3footeragile">
+		<p> &copy; @DateTime.Now.Year Easy Cash. All Rights Reserved</p>
+	</div>
+
+
+	<script type="text/javascript" src="~/register/js/jquery-2.1.4.min.js"></script>
+</body>
+</html>

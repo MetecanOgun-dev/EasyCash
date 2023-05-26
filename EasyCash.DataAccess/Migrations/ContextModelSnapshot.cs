@@ -148,6 +148,9 @@ namespace EasyCash.DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CustomerAccountId"), 1L, 1);
 
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
                     b.Property<string>("BankBranch")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -164,6 +167,8 @@ namespace EasyCash.DataAccessLayer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CustomerAccountId");
+
+                    b.HasIndex("AppUserId");
 
                     b.ToTable("CustomerAccounts");
                 });
@@ -189,6 +194,61 @@ namespace EasyCash.DataAccessLayer.Migrations
                     b.HasKey("CustomerAccountProcessId");
 
                     b.ToTable("CustomerAccountProcesses");
+                });
+
+            modelBuilder.Entity("EasyCash.EntityLayer.Concrete.ErrorLog", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("AdditionalData")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ApplicationName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ExceptionType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("IPAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("InnerException")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("MachineName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Message")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RequestMethod")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RequestUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Severity")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Source")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StackTrace")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Timestamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("User")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ErrorLog");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -294,6 +354,17 @@ namespace EasyCash.DataAccessLayer.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("EasyCash.EntityLayer.Concrete.CustomerAccount", b =>
+                {
+                    b.HasOne("EasyCash.EntityLayer.Concrete.AppUser", "AppUser")
+                        .WithMany("CustomerAccounts")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
                     b.HasOne("EasyCash.EntityLayer.Concrete.AppRole", null)
@@ -343,6 +414,11 @@ namespace EasyCash.DataAccessLayer.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("EasyCash.EntityLayer.Concrete.AppUser", b =>
+                {
+                    b.Navigation("CustomerAccounts");
                 });
 #pragma warning restore 612, 618
         }

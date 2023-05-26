@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EasyCash.DtoLayer\EasyCash.DtoLayer.csproj" />
     <ProjectReference Include="..\EasyCash.EntityLayer\EasyCash.EntityLayer.csproj" />
   </ItemGroup>
 
