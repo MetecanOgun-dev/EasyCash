@@ -1,0 +1,47 @@
+﻿@model EmailValidationViewModel
+@{
+    Layout = null;
+}
+<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+@if (ViewBag.ValidationSuccess == null)
+{
+    <div class="container">
+        <br />
+        <br />
+        <form method="post">
+            <label>Enter your verification code</label>
+            <input asp-for="ValidationCode" type="text"  class="form-control" />
+            <br />
+            <button class="btn btn-primary">Validate Account</button>
+        </form>
+    </div>
+}
+else if (ViewBag.ValidationSuccess == false)
+{
+    <div class="container">
+        <br />
+        <br />
+        <span>@ViewBag.ValidationMessage</span>
+        <br/>
+        <form method="post">
+            <label>Enter your verification code</label>
+            <input asp-for="ValidationCode" type="text" class="form-control" />
+            <br />
+            <button class="btn btn-primary">Validate Account</button>
+        </form>
+    </div>
+}
+else
+{
+    <div class="container">
+        <span>@ViewBag.ValidationMessage</span>
+    </div>
+    
+    <script type="text/javascript">
+        setTimeout(function () {
+            window.location.href = "/Home/Index";
+        }, 3000);
+    </script>
+}
+
+
